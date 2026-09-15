@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huvitz · Каталог офтальмологического оборудования</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1B20;
+    --ink-2:#132A2C;
+    --paper:#F5F8F7;
+    --paper-2:#FFFFFF;
+    --line:#D9E3E0;
+    --line-2:#22383A;
+    --teal:#12786F;
+    --teal-deep:#0A5750;
+    --amber:#D89A3F;
+    --muted:#5C7370;
+    --text:#132321;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:'Public Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.disp,.model-code,nav .brand{font-family:'Space Grotesk',sans-serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .logo-bar{
+    display:flex; justify-content:center; align-items:center; height:96px; padding:8px 24px;
+    background:#fff; border-bottom:1px solid var(--line);
+  }
+  .logo-bar img{width:260px; height:80px; object-fit:cover; object-position:center;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:rgba(245,248,247,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    max-width:1200px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .brand{font-size:20px; font-weight:700; letter-spacing:0.01em; display:flex; align-items:baseline; gap:8px;}
+  .brand span{color:var(--teal); font-size:12px; font-weight:500; font-family:'IBM Plex Mono',monospace;}
+  .header-contacts{display:flex; gap:22px; font-size:13px; color:var(--muted);}
+  .header-contacts a{text-decoration:none;}
+  .header-contacts a:hover{color:var(--teal);}
+  @media (max-width:720px){ .header-contacts{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    max-width:1200px; margin:0 auto; padding:64px 24px 48px;
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center;
+  }
+  @media (max-width:860px){ .hero{grid-template-columns:1fr; padding-top:40px;} }
+  .hero-eyebrow{font-size:13px; color:var(--teal); font-family:'IBM Plex Mono',monospace; margin-bottom:14px;}
+  .hero h1{
+    font-size:clamp(32px,4.6vw,54px); line-height:1.05; font-weight:600; margin:0 0 20px;
+    color:var(--ink); letter-spacing:-0.01em;
+  }
+  .hero p{font-size:17px; line-height:1.55; color:var(--muted); max-width:46ch; margin:0 0 22px;}
+  .hero-meta{display:flex; gap:28px; flex-wrap:wrap; margin-top:28px;}
+  .hero-meta div{font-size:13px; color:var(--muted);}
+  .hero-meta b{display:block; font-family:'Space Grotesk',sans-serif; font-size:22px; color:var(--ink); font-weight:600;}
+
+  .eye-visual{
+    position:relative; min-height:340px; overflow:hidden; border-radius:2px; background:#fff;
+    box-shadow:0 18px 36px -20px rgba(14,27,32,.55); animation:eyeReveal 700ms cubic-bezier(.2,.8,.2,1) both;
+  }
+  .eye-visual img{width:100%; height:100%; min-height:340px; object-fit:contain; object-position:center; display:block; background:#fff;}
+  .eye-visual-label{
+    position:absolute; z-index:1; left:18px; bottom:18px; padding:8px 10px; color:var(--ink);
+    background:rgba(255,255,255,.9); border-left:2px solid var(--amber); font-family:'IBM Plex Mono',monospace;
+    font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  }
+  @keyframes eyeReveal{from{opacity:0; transform:translateY(12px) scale(.98);}to{opacity:1; transform:translateY(0) scale(1);}}
+  @media (max-width:860px){.eye-visual{min-height:280px;}.eye-visual img{min-height:280px;}}
+
+  /* ---------- Controls ---------- */
+  .controls{
+    position:sticky; top:57px; z-index:30;
+    background:var(--paper); border-bottom:1px solid var(--line);
+  }
+  .controls-inner{
+    max-width:1200px; margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:space-between;
+  }
+  .tabs{display:flex; gap:6px; background:var(--paper-2); border:1px solid var(--line); padding:4px; border-radius:3px;}
+  .tab{
+    border:none; background:transparent; padding:8px 16px; font-family:'Space Grotesk',sans-serif;
+    font-size:14px; font-weight:500; color:var(--muted); cursor:pointer; border-radius:2px;
+    transition:background 220ms ease, color 220ms ease;
+  }
+  .tab.active{background:var(--ink); color:#fff;}
+  .tab:not(.active):hover{color:var(--teal);}
+  .search-wrap{position:relative; flex:1; min-width:220px; max-width:320px;}
+  .search-wrap input{
+    width:100%; padding:9px 14px 9px 34px; border:1px solid var(--line); background:var(--paper-2);
+    font-family:'Public Sans',sans-serif; font-size:14px; border-radius:2px; color:var(--text);
+    outline:none; transition:border-color 200ms ease;
+  }
+  .search-wrap input:focus{border-color:var(--teal);}
+  .search-wrap svg{position:absolute; left:11px; top:50%; transform:translateY(-50%); width:14px; height:14px; stroke:var(--muted);}
+  .count{font-size:13px; color:var(--muted); font-family:'IBM Plex Mono',monospace; white-space:nowrap;}
+
+  /* ---------- Grid ---------- */
+  main{max-width:1200px; margin:0 auto; padding:36px 24px 100px;}
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(258px,1fr)); gap:20px;
+  }
+  .card{
+    background:var(--paper-2); border:1px solid var(--line); cursor:pointer; overflow:hidden;
+    display:flex; flex-direction:column; border-radius:2px;
+    transition:border-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+    animation:cardIn 420ms ease both;
+  }
+  @keyframes cardIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+  .card:hover{border-color:var(--teal); box-shadow:0 10px 28px -14px rgba(14,27,32,0.35); transform:translateY(-2px);}
+  .card-media{position:relative; aspect-ratio:4/3; overflow:hidden; background:#E7EDEB;}
+  .card-media img{width:100%; height:100%; object-fit:cover; transition:transform 500ms cubic-bezier(.2,.7,.2,1), filter 500ms ease;}
+  .card:hover .card-media img{transform:scale(1.07); filter:brightness(1.04) saturate(1.05);}
+  .card-model{
+    position:absolute; top:10px; left:10px; background:rgba(14,27,32,0.82); color:#fff;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; padding:4px 8px; letter-spacing:0.02em;
+  }
+  .card-cat{
+    position:absolute; top:10px; right:10px; background:rgba(255,255,255,0.9); color:var(--teal-deep);
+    font-size:10.5px; padding:4px 8px; font-weight:600;
+  }
+  .card-body{padding:16px 16px 18px; display:flex; flex-direction:column; gap:6px; flex:1;}
+  .card-body h3{margin:0; font-size:16.5px; font-weight:600; color:var(--ink); line-height:1.25;}
+  .card-body p{margin:0; font-size:13px; color:var(--muted); line-height:1.4;}
+
+  .empty{padding:60px 0; text-align:center; color:var(--muted); font-size:15px;}
+
+  .contacts-panel{display:none; padding:8px 0 0;}
+  .contacts-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;
+  }
+  .contact-card{
+    background:var(--paper-2); border:1px solid var(--line); padding:22px 20px; display:flex; flex-direction:column; gap:12px;
+    border-radius:2px;
+  }
+  .contact-badge{display:inline-flex; align-self:flex-start; padding:6px 9px; background:var(--ink); color:#fff; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.04em; text-transform:uppercase;}
+  .contact-card h3{margin:0; font-size:18px; color:var(--ink); font-weight:600; line-height:1.3;}
+  .contact-role{font-size:13px; color:var(--teal-deep); font-weight:600; line-height:1.5;}
+  .contact-card p{margin:0; font-size:13.5px; line-height:1.6; color:var(--muted);}
+  .contact-card ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;}
+  .contact-card li{display:grid; grid-template-columns:52px 1fr; gap:8px; align-items:flex-start; font-size:13px; line-height:1.5; color:var(--text);}
+  .contact-label{font-family:'IBM Plex Mono',monospace; color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:0.05em; padding-top:2px;}
+  .contact-card a{color:var(--teal-deep); text-decoration:none;}
+  .contact-card a:hover{color:var(--ink);} 
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink); color:#DCE7E5; padding:52px 24px 30px;}
+  .footer-inner{max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:36px;}
+  @media (max-width:720px){ .footer-inner{grid-template-columns:1fr;} }
+  footer h5{font-family:'Space Grotesk',sans-serif; font-size:15px; margin:0 0 14px; color:#fff;}
+  footer p{font-size:13.5px; line-height:1.6; color:#9FB4B1; max-width:44ch; margin:0 0 14px;}
+  footer ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px;}
+  footer li a{font-size:13.5px; color:#B9CAC7; text-decoration:none;}
+  footer li a:hover{color:var(--teal);}
+  .footer-bottom{
+    max-width:1200px; margin:40px auto 0; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1);
+    font-size:12px; color:#6E8683; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- Equipment details ---------- */
+  .overlay{
+    position:fixed; inset:0; z-index:80; display:flex; align-items:center; justify-content:center;
+    padding:24px; background:rgba(14,27,32,0.72); opacity:0; visibility:hidden;
+    transition:opacity 220ms ease, visibility 220ms ease;
+  }
+  .overlay.open{opacity:1; visibility:visible;}
+  .modal{
+    width:min(900px,100%); max-height:min(92vh,900px); overflow:auto; background:var(--paper-2);
+    border:1px solid var(--line); transform:translateY(18px) scale(.98); opacity:0;
+    transition:transform 260ms ease, opacity 260ms ease;
+  }
+  .modal.show{transform:translateY(0) scale(1); opacity:1;}
+  .modal-top{position:relative; background:#E7EDEB;}
+  .modal-main-img{width:100%; max-height:420px; object-fit:contain;}
+  .modal-close{
+    position:absolute; top:12px; right:12px; z-index:1; width:36px; height:36px; border:0;
+    background:var(--ink); color:#fff; font-size:26px; line-height:1; cursor:pointer;
+  }
+  .modal-close:hover{background:var(--teal);}
+  .thumbs{display:flex; gap:8px; overflow:auto; padding:12px 18px; border-bottom:1px solid var(--line);}
+  .thumbs img{width:72px; height:54px; object-fit:cover; border:2px solid transparent; cursor:pointer; opacity:.7;}
+  .thumbs img.active,.thumbs img:hover{border-color:var(--teal); opacity:1;}
+  .modal-head,.modal-desc,.modal-specs,.modal-foot{padding-left:28px; padding-right:28px;}
+  .modal-head{padding-top:24px;}
+  .modal-cat{display:inline-block; color:var(--teal-deep); font-size:12px; font-weight:600; text-transform:uppercase;}
+  .mcode{float:right; color:var(--muted); font-size:12px;}
+  .modal h2{margin:10px 0 8px; color:var(--ink); font-size:28px; line-height:1.15;}
+  .mtag{margin:0; color:var(--muted); line-height:1.5;}
+  .modal-desc{padding-top:18px; color:var(--text); font-size:14px; line-height:1.65;}
+  .modal-desc p{margin:0 0 10px;}
+  .modal-specs{padding-top:10px;}
+  .spec-group{margin-top:18px; border:1px solid var(--line);}
+  .spec-group h4{margin:0; padding:10px 12px; background:var(--paper); color:var(--ink); font-size:14px;}
+  .spec-row{display:grid; grid-template-columns:minmax(150px,.8fr) 1.2fr; border-top:1px solid var(--line); font-size:13px; line-height:1.45;}
+  .spec-row .k,.spec-row .v{padding:9px 12px;}
+  .spec-row .k{color:var(--muted);}
+  .modal-foot{margin-top:24px; padding-top:16px; padding-bottom:24px; border-top:1px solid var(--line); color:var(--muted); font-size:14px;}
+  .modal-foot a{color:var(--teal-deep); text-decoration:none; font-weight:600;}
+  @media (max-width:600px){
+    .overlay{padding:10px;}
+    .modal-head,.modal-desc,.modal-specs,.modal-foot{padding-left:16px; padding-right:16px;}
+    .modal h2{font-size:23px;}
+    .spec-row{grid-template-columns:1fr;}
+    .spec-row .v{padding-top:0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY-UFDI6cEXErsaWNjgnjU2eDrOLm-kzNyxHorph8uBcXPRL5h81BOZI8&s=10" alt="Логотип Huvitz">
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">HUVITZ <span>· BY / КАТАЛОГ</span></div>
+    <div class="header-contacts">
+      <a href="tel:+375296749345">+375 29 674-93-45</a>
+      <a href="tel:+375154611505">тел/факс +375 15 461-15-05</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Официальный представитель Huvitz в Беларуси</div>
+    <h1>Офтальмологическое оборудование для диагностики, рефракции и рабочего места врача</h1>
+    <p>Полный каталог приборов Huvitz — от авторефкератометров и щелевых ламп до оптического когерентного томографа и рабочих мест офтальмолога. Нажмите на любой прибор, чтобы открыть фотографии и полные технические характеристики.</p>
+    <div class="hero-meta">
+      <div><b id="statTotal">19</b>приборов в каталоге</div>
+      <div><b>3</b>раздела: рефракция, диагностика, рабочее место</div>
+    </div>
+  </div>
+  <div class="eye-visual">
+    <img src="https://media.licdn.com/dms/image/v2/D4D22AQFDOwdgpnoOcA/feedshare-shrink_800/B4DZ7qmxhwHgAc-/0/1782052493664?e=2147483647&v=beta&t=_EAvNGyx_8x6_ZdAtgDkl3Na-4WN-WM-eUmrLLnp9FQ" alt="Анатомическая схема человеческого глаза" fetchpriority="high">
+    <span class="eye-visual-label">Точная диагностика зрения</span>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all">Все приборы</button>
+      <button class="tab" data-cat="refraction">Рефракция</button>
+      <button class="tab" data-cat="diagnostics">Диагностика</button>
+      <button class="tab" data-cat="workplace">Рабочее место</button>
+      <button class="tab" data-cat="contacts">Контакты</button>
+    </div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search" placeholder="Поиск по названию или модели…">
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+</div>
+
+<main>
+  <div class="grid" id="grid"></div>
+  <div class="contacts-panel" id="contactsPanel">
+    <div class="contacts-grid" id="contactsGrid"></div>
+  </div>
+  <div class="empty" id="empty" style="display:none;">Ничего не найдено по вашему запросу.</div>
+</main>
+
+<div class="overlay" id="overlay">
+  <div class="modal" id="modal"></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h5>HUVITZ · Беларусь</h5>
+      <p>Официальное представительство южнокорейской компании Huvitz в Республике Беларусь. Поставка, ввод в эксплуатацию и сервисное обслуживание офтальмологического оборудования.</p>
+    </div>
+    <div>
+      <h5>Разделы</h5>
+      <ul>
+        <li><a href="#" data-cat-link="refraction">Рефракция</a></li>
+        <li><a href="#" data-cat-link="diagnostics">Диагностика</a></li>
+        <li><a href="#" data-cat-link="workplace">Рабочее место</a></li>
+        <li><a href="#" data-cat-link="contacts">Контакты</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Контакты</h5>
+      <ul>
+        <li><a href="tel:+375296749345">+375 29 674-93-45</a></li>
+        <li><a href="tel:+375154611505">тел/факс +375 15 461-15-05</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Неофициальный каталог-витрина на основе открытых данных huvitz.by</span>
+    <span>© Huvitz Corporation — оборудование и товарные знаки принадлежат правообладателю</span>
+  </div>
+</footer>
+
+<script>
+const CAT_LABEL = {refraction:'Рефракция', diagnostics:'Диагностика', workplace:'Рабочее место'};
+
+const CONTACTS = [
+  {
+    name:'Тутин Роман Викторович',
+    role:'Сервис и гарантия',
+    position:'Главный инженер',
+    phones:[{label:'+375 29 674-93-45', raw:'+375296749345'}],
+    note:'Инсталляция и сервисная поддержка медицинского оборудования.'
+  },
+  {
+    name:'Капацевич Виктор Леонтьевич',
+    role:'Сервис и гарантия',
+    position:'Инженер по медицинскому оборудованию',
+    phones:[{label:'+375 44 545-44-59', raw:'+375445454459'}],
+    note:'Техническая поддержка и обслуживание медицинского оборудования.'
+  },
+  {
+    name:'Чечетко Алексей Александрович',
+    role:'Коммерческий отдел',
+    position:'Заключение договоров',
+    phones:[{label:'+375 29 155-88-30', raw:'+375291558830'}],
+    email:'291558830@mail.ru',
+    note:'Контакт по заключению договоров и коммерческим вопросам.'
+  },
+  {
+    name:'Бухгалтерия',
+    role:'Администрация',
+    position:'Бухгалтерия',
+    phones:[{label:'тел./факс +375 15 461-15-05', raw:'+375154611505'}],
+    note:'Телефон и факс бухгалтерии.'
+  }
+];
+
+const PRODUCTS = [
+{
+  id:'hrt-7000', cat:'workplace', model:'HRT-7000', title:'Рабочее место офтальмолога',
+  tag:'Комплексное рабочее место на основе приборов серии 7000 с единым пультом управления',
+  desc:[
+    'HRT-7000 объединяет офтальмологические приборы 7000-й серии Huvitz в единый комплекс, которым можно управлять с одного пульта — это ускоряет приём и подбор очков.',
+    'Кресло пациента оснащено плавным электроприводом вертикального перемещения и датчиком остановки, а кронштейн фороптора наклоняется вправо и влево на 45° и свободно регулируется по высоте.',
+    'Кнопки панели управления одним нажатием меняют высоту кресла, положение кронштейна фороптора и дополнительную подсветку в кабинете.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/img_hrt7000_1.jpg',a:'Рабочее место HRT-7000'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HRT-7000-Kronshteyn-foroptora.jpg',a:'Кронштейн фороптора'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HRT-7000-Regulirovka-po-vyisote.jpg',a:'Регулировка по высоте'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HRT-7000-Panel-upravleniya.jpg',a:'Панель управления'}
+  ],
+  specs:[
+    {t:'Кресло', r:[
+      ['Тип кресла пациента','Моторизированное'],
+      ['Тип спинки кресла','Фиксированная'],
+      ['Цвет кресла','Чёрный'],
+      ['Подлокотники','Есть, фиксированные'],
+      ['Максимальный подъём кресла','150 мм'],
+      ['Размещение кресла','Отдельное основание'],
+      ['Размеры кресла','650 × 600 × 1350 мм'],
+      ['Вес','38.5 кг']
+    ]},
+    {t:'Стойка', r:[
+      ['Кол-во приборов','1 (2)'],
+      ['Форма столешницы','Прямоугольная'],
+      ['Размер столешницы','450 × 1057 мм'],
+      ['Угол поворота стола','90°'],
+      ['Ящик для пробных линз','Есть'],
+      ['Кронштейн проектора знаков','Выдвижной, регулировка по оси X'],
+      ['Кронштейн фороптора','Моторизованный, подъём до 200 мм'],
+      ['Цвет корпуса','Серый / чёрный'],
+      ['Лампа главного светильника','Светодиодная, 3 Вт'],
+      ['Материалы','Металл / пластик'],
+      ['Параметры питания','~110–220 В, 50/60 Гц'],
+      ['Энергопотребление','420 Вт']
+    ]}
+  ],
+},
+{
+  id:'hrk-9000a', cat:'refraction', model:'HRK-9000A', title:'Авторефкератометр HRK-9000A',
+  tag:'Кератометрия и рефрактометрия с оценкой слёзной плёнки и мейбомиевых желёз',
+  desc:[
+    'HRK-9000A сочетает классическую авторефкератометрию с дополнительными офтальмологическими тестами — от карты волнового фронта до времени разрыва слёзной плёнки.',
+    'Цветной режим с бело-голубой подсветкой упрощает подбор контактных линз, а режим Z-MAP строит карту аберраций высшего порядка.',
+    'Прибор сохраняет до 10 измерений на каждый глаз и передаёт данные по Wi-Fi, а встроенный термопринтер печатает результат сразу после обследования.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HRK-9000A.jpg',a:'Авторефкератометр HRK-9000A'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HRK-9000A-Opredelenie-subektivnoy-refraktsii-1.jpg',a:'Определение субъективной рефракции'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HRK-9000A-TFBUT-i-meybografiya.jpg',a:'TFBUT и мейбография'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HRK-9000A-Opticheskaya-sistema-1.jpg',a:'Оптическая система'}
+  ],
+  specs:[
+    {t:'Режимы измерения', r:[
+      ['Режим K/R','Кератометрия и рефрактометрия'],
+      ['Режим REF','Рефрактометрия'],
+      ['Режим KER','Кератометрия'],
+      ['Режим KER P','Периферическая кератометрия'],
+      ['Цветовой режим','Просмотр в цвете, подбор контактных линз'],
+      ['Режим Z-MAP','Карта волнового фронта высших порядков'],
+      ['Режим MEIBO','Секреция мейбомиевых желёз'],
+      ['Режим TFBUT','Время разрыва слёзной плёнки']
+    ]},
+    {t:'Рефрактометрия', r:[
+      ['Вертексное расстояние (VD)','0.0 / 12.0 / 13.5 / 13.75 / 15.0 мм'],
+      ['Сфера (SPH)','−30.00…+25.00 D (шаг 0.01/0.12/0.25 D)'],
+      ['Цилиндр (CYL)','0.00±12.00 D (шаг 0.12/0.25 D)'],
+      ['Оси','1–180° (шаг 1°)'],
+      ['Форма цилиндра','−, +, ±'],
+      ['Межзрачковое расстояние (PD)','10–85 мм'],
+      ['Мин. диаметр зрачка','2.0 мм']
+    ]},
+    {t:'Кератометрия', r:[
+      ['Радиус кривизны','5.0–13.0 мм (шаг 0.01 мм)'],
+      ['Преломляющая сила','25.96–67.50 D (n=1.3375)'],
+      ['Роговичный астигматизм','0.00…−15.00 D'],
+      ['Диаметр зрачка','2.0–14.0 мм (шаг 0.1 мм)'],
+      ['Память','10 измерений на глаз']
+    ]},
+    {t:'VA-тест (субъективная рефракция)', r:[
+      ['Измерение остроты зрения','0.1–1.25 (20/200…20/16)'],
+      ['Сфера','−22.00…+22.00 D (шаг 0.25 D)'],
+      ['Цилиндр','0.00±10.00 D (шаг 0.25 D)'],
+      ['Ось','1–180° (шаг 1°/5°)']
+    ]},
+    {t:'Диапазон перемещений', r:[
+      ['Вверх-вниз','±15 мм'],
+      ['Влево-вправо','±5 мм (±2 мм)'],
+      ['Вперёд-назад','±5 мм (±2 мм)']
+    ]},
+    {t:'Прочее', r:[
+      ['Дисплей','Цветной TFT LCD 7″ с наклоном'],
+      ['Интерфейс','RS-232 ×1, USB ×1, Wi-Fi'],
+      ['Wi-Fi','2.4 ГГц, 802.11 b/g, WPA2-PSK'],
+      ['Принтер','Встроенный термопринтер'],
+      ['Энергосбережение','Автовыключение через 5 мин'],
+      ['Питание','~100–240 В, 50/60 Гц'],
+      ['Размер / Вес','262×518×441 мм / 19 кг']
+    ]}
+  ],
+},
+{
+  id:'hrk-8100a', cat:'refraction', model:'HRK-8100A', title:'Авторефкератометр HRK-8100A',
+  tag:'Сверхточное измерение рефракции с построением карт аберраций до 4-го порядка',
+  desc:[
+    'HRK-8100A измеряет рефракцию глаза с построением карт аберраций до 4-го порядка — по 49 или 81 точке.',
+    'Датчик Хартмана-Шака формирует карту волнового фронта, а режим CLBC определяет базовую кривизну контактной линзы для точного подбора.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2026/03/8100A-1.jpg',a:'Авторефкератометр HRK-8100A'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HRK-8000A-Opticheskaya-sistema-1.jpg',a:'Оптическая система'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HRK-8000A-Karta-aberratsiy.jpg',a:'Карта аберраций'}
+  ],
+  specs:[
+    {t:'Режимы измерения', r:[
+      ['Режим K/R','Кератометрия и рефрактометрия'],
+      ['Режим REF','Рефрактометрия'],
+      ['Режим KER','Кератометрия'],
+      ['Режим CLBC','Базовая кривизна контактной линзы'],
+      ['Цветовой режим','Просмотр в цвете, подбор контактных линз'],
+      ['Режим Z-MAP','Карта волнового фронта (Хартман-Шак)']
+    ]},
+    {t:'Рефрактометрия', r:[
+      ['Вертексное расстояние (VD)','0.0 / 12.0 / 13.5 / 15.0 мм'],
+      ['Сфера (SPH)','−30.00…+25.00 D (шаг 0.01/0.12/0.25 D)'],
+      ['Цилиндр (CYL)','0.00±12.00 D (шаг 0.12/0.25 D)'],
+      ['Оси','1–180°'],
+      ['Межзрачковое расстояние (PD)','10–85 мм'],
+      ['Мин. диаметр зрачка','2.0 мм']
+    ]},
+    {t:'Кератометрия', r:[
+      ['Радиус кривизны','5.0–13.0 мм (шаг 0.01 мм)'],
+      ['Преломляющая сила','25.96–67.50 D (n=1.3375)'],
+      ['Роговичный астигматизм','0.00…−15.00 D'],
+      ['Диаметр зрачка','2.0–14.0 мм (шаг 0.1 мм)'],
+      ['Память','10 измерений на глаз']
+    ]},
+    {t:'Диапазон перемещений', r:[
+      ['Вверх-вниз','±15 мм'],
+      ['Влево-вправо','±5 мм (±2 мм)'],
+      ['Вперёд-назад','±5 мм (±2 мм)']
+    ]},
+    {t:'Прочее', r:[
+      ['Дисплей','Цветной TFT LCD 7″'],
+      ['Принтер','Встроенный термопринтер'],
+      ['Энергосбережение','Автовыключение через 5 мин'],
+      ['Питание','~100–240 В, 50/60 Гц, 60 Вт'],
+      ['Размер / Вес','262×518×441 мм / 20.9 кг']
+    ]}
+  ],
+},
+{
+  id:'hrk-1', cat:'refraction', model:'HRK-1', title:'Авторефкератометр HRK-1',
+  tag:'Базовая модель с технологией стабилизации измерительного кольца SAMC',
+  desc:[
+    'HRK-1 автоматически стабилизирует измерительное кольцо на сетчатке благодаря технологии интеллектуального наведения SAMC.',
+    'Это компенсирует неравномерное отражение света у пациентов с катарактой и повышает точность измерения преломляющей силы даже в сложных клинических случаях.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/1.jpg',a:'Авторефкератометр HRK-1'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/2.jpg',a:'HRK-1, вид сбоку'}
+  ],
+  specs:[
+    {t:'Характеристики', r:[
+      ['Режим K/R','Кератометрия и рефрактометрия'],
+      ['Режим REF','Рефрактометрия'],
+      ['Режим KER','Кератометрия'],
+      ['Цветовой режим','Просмотр в цвете, подбор контактных линз'],
+      ['Вертексное расстояние (VD)','0.0 / 12.0 / 13.5 / 15.0 мм'],
+      ['Сфера (SPH)','−30.00…+25.00 D'],
+      ['Цилиндр (CYL)','0.00±12.00 D'],
+      ['Оси','0–180°'],
+      ['Межзрачковое расстояние','10–85 мм'],
+      ['Мин. диаметр зрачка','2.0 мм'],
+      ['Радиус кривизны','5.0–13.0 мм'],
+      ['Преломляющая сила','25.96–67.50 D'],
+      ['Роговичный астигматизм','0.00…−15.00 D'],
+      ['Диаметр зрачка','2.0–14.0 мм'],
+      ['Память','10 измерений на глаз'],
+      ['Перемещение вверх-вниз','±15 мм'],
+      ['Дисплей','Цветной TFT LCD 7″, сенсорный'],
+      ['Интерфейс','RS-232C'],
+      ['Принтер','Встроенный термопринтер'],
+      ['Питание','~100–240 В, 1.0–0.6 А, 50/60 Гц'],
+      ['Размер / Вес','262×518×441 мм / 20.9 кг']
+    ]}
+  ],
+},
+{
+  id:'crk-1-1p', cat:'refraction', model:'CRK-1/1P', title:'Авторефкератометр CRK-1/1P',
+  tag:'Модель Charops с системой Smart Assembly и ретроиллюминацией (1P)',
+  desc:[
+    'CRK-1/1P спроектирован инженерами Huvitz, а собирается на производственной площадке в Китае под брендом Charops.',
+    'Версия CRK-1P дополнена ретроиллюминацией для выявления катаракты и помутнений роговицы, цветной камерой Color View для оценки посадки линз и автотрекингом по оси Z.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2026/03/CRK-1.jpg',a:'Авторефкератометр CRK-1/1P'}
+  ],
+  specs:[
+    {t:'Характеристики', r:[
+      ['Режимы измерения','Непрерывная K/R, REF, KER'],
+      ['Вертексное расстояние (VD)','0.0 / 12.0 / 13.75 / 15.0 мм'],
+      ['Сфера (SPH)','−30.00…+25.00 D (VD 12 мм)'],
+      ['Цилиндр (CYL)','0.00±12.00 D (шаг 0.01/0.12/0.25 D)'],
+      ['Ось (AX)','0–180° (шаг 1°)'],
+      ['Индикация астигматизма','−, +, MIX'],
+      ['Межзрачковое расстояние (PD)','10–85 мм'],
+      ['Мин. диаметр зрачка','2.0 мм'],
+      ['Радиус кривизны роговицы','5.0–13.0 мм (шаг 0.01)'],
+      ['Сила рефракции роговицы','25.96–67.50 D (n=1.3375)'],
+      ['Астигматизм роговицы','0.0…−15.00 D'],
+      ['Диаметр роговицы и зрачка','2.0–14.0 мм'],
+      ['Автоперемещение вверх-вниз','±15 мм (±3 мм)'],
+      ['Автоотслеживание вверх-вниз','±5 мм'],
+      ['Упор подбородка вверх-вниз','60 мм (±5 мм)'],
+      ['Память','10 измерений на глаз'],
+      ['Интерфейс','RS-232C, аналоговый RGB'],
+      ['Принтер','Встроенный термопринтер'],
+      ['Монитор','7″ цветной IPS 800×480, резистивный сенсор'],
+      ['Питание','~100–240 В, 50/60 Гц, 60 Вт'],
+      ['Размер / Вес','262×518×441 мм / 20.9 кг']
+    ]}
+  ],
+},
+{
+  id:'hdc-9100n', cat:'refraction', model:'HDC-9100N/PF', title:'Цифровой проектор знаков',
+  tag:'Full HD проектор знаков с поляризационным 24″ экраном',
+  desc:[
+    '24″ LCD-экран с поляризационной панелью повышает точность определения остроты зрения в Full HD-качестве.',
+    'Библиотека таблиц включает буквы (в том числе русские), кольца Ландольта, оптотипы Снеллена и картинки для детей, а также 12 тестов на цветоаномалию и профессиональный HUE-тест из 85 и упрощённый из 15 оттенков.',
+    'Отдельная программа измеряет пространственную контрастную чувствительность глаза пациента.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HDC-9000-555x560.jpg',a:'Цифровой проектор знаков HDC-9100N/PF'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HDC-9000-24-LCD-ekran.jpg',a:'24″ LCD экран'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HDC-9000-SHirokiy-spektr-tablits-dlya-opredeleniya-ostrotyi-zreniya.jpg',a:'Таблицы для определения остроты зрения'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HDC-9000-Testyi-na-chuvstvitelnost.jpg',a:'Тесты на чувствительность'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HDC-9000-Prostranstvennaya-chuvstvitelnost.jpg',a:'Пространственная чувствительность'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HDC-9000-HUE-test.jpg',a:'HUE-тест'}
+  ],
+  specs:[
+    {t:'Характеристики', r:[
+      ['Маски','Горизонтальная / вертикальная / один оптотип'],
+      ['Красно-зелёный тест','Настраиваемая цветопередача'],
+      ['Рабочее расстояние','2.5–6.0 м (шаг 0.1 м)'],
+      ['Передача данных','USB (ПК), CAN (HDR/CDR)'],
+      ['Объём памяти','100 МБ'],
+      ['Питание','100 мА, 5 В, 0.5 Вт'],
+      ['Кронштейн крепления на стену','240×25.5×230 мм'],
+      ['Вес','2.9 кг']
+    ]}
+  ],
+},
+{
+  id:'hcp-7000', cat:'refraction', model:'HCP-7000', title:'Проектор знаков',
+  tag:'41 таблица оптотипов, LED-подсветка, смена таблиц за 0.15 секунды',
+  desc:[
+    'HCP-7000 переключает таблицы за 0.15 секунды и хранит две программы по 30 оптотипов каждая.',
+    'Красно-зелёный и поляризационный фильтры позволяют тестировать бинокулярное и стереоскопическое зрение, анизейконию и фузионные резервы.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/img_hcp7000_1.jpg',a:'Проектор знаков HCP-7000'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HCP-7000-Tablitsa-optotipov.jpg',a:'Таблица оптотипов'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/img_hcp7000_2.jpg',a:'HCP-7000, крепление'}
+  ],
+  specs:[
+    {t:'Характеристики', r:[
+      ['Таблицы оптотипов','41 оптотип, 34 маски + красно-зелёный/поляризационный фильтры'],
+      ['Рабочее расстояние','2.5–8 м'],
+      ['Скорость смены таблиц','0.15 сек'],
+      ['Проекционное увеличение','30× на 5 м'],
+      ['Энергосбережение','Автовыключение через 10 мин'],
+      ['Программы','2 × 30 оптотипов'],
+      ['Угол наклона','15°'],
+      ['Питание','0.6 A, 200–240 В, 60 Гц'],
+      ['Потребляемая мощность','100–120В/50Гц: 0.6А · 200–240В/60Гц: 0.3А'],
+      ['Лампа','LED'],
+      ['Размеры','270×182×230 мм'],
+      ['Вес','3.44 кг']
+    ]}
+  ],
+},
+{
+  id:'hdr-9000', cat:'refraction', model:'HDR-9000', title:'Фороптор',
+  tag:'Электронный фороптор с программой подбора очков из 21 шага',
+  desc:[
+    'HDR-9000 управляется единой панелью вместе с проектором знаков и принимает данные напрямую с авторефкератометра HRK и диоптриметра HLM.',
+    'Программа из 21 шага помогает провести исследование быстро и точно даже менее опытному специалисту, а результаты видят одновременно врач и пациент на дисплее.',
+    'Двойной кросс-цилиндр Джексона ускоряет уточнение оси и силы цилиндра, монокулярная регулировка высоты — ±3 мм на каждый глаз, а корпус наклоняется до 45° для теста на близком расстоянии — ощущение как при чтении книги.'
+  ],
+  img:[
+    {s:'https://usophthalmic.com/cdn/shop/products/HDR-9000_02_720x.jpg?v=1602026117',a:'Электронный фороптор HDR-9000'},
+    {s:'https://huvitz.by/wp-content/uploads/2026/03/75193931-1.jpg',a:'Кросс-цилиндр'},
+    {s:'https://huvitz.by/wp-content/uploads/2026/03/71946169-1.jpg',a:'Панель управления фороптора'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HDR-7000-Dop-testyi.jpg',a:'Дополнительные тесты'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/img_hdr7000_tab3-680x468.jpg',a:'Графические тесты'}
+  ],
+  specs:[
+    {t:'Характеристики', r:[
+      ['Сфера (SPH)','−29.00…+26.75 D (шаг 0.12/0.25/1/2/3/4 D)'],
+      ['Цилиндр (CYL)','−8.75…+8.75 D (шаг 0.25/1/2/3 D)'],
+      ['Ось цилиндра (AX)','0–180° (шаг 1/5/15°)'],
+      ['Межзрачковое расстояние (PD)','48–80 мм'],
+      ['Кросс-цилиндр','±0.25 D и ±0.5/±0.25 D (двойной)'],
+      ['Призма','0–20 D (шаг 0.10–2.00 D)'],
+      ['Конвергенция','Автоматическая, 350–750 мм'],
+      ['Линза для ретиноскопии','+1.50 / +2.00 D'],
+      ['Регулировка по высоте','±3 мм, монокулярно'],
+      ['Вертексное расстояние (VD)','12 мм'],
+      ['Размеры','329×296×103 мм'],
+      ['Вес','4.2 кг']
+    ]}
+  ],
+},
+{
+  id:'hlm-7000p', cat:'refraction', model:'HLM-7000Р', title:'Диоптриметр HLM-7000Р',
+  tag:'Электронный диоптриметр для очковых и контактных линз',
+  desc:[
+    'HLM-7000P автоматически измеряет рефракцию очковых линз и все типы жёстких контактных линз; измерение мягких линз доступно опционально.',
+    'Встроенный принтер и цветной дисплей 320×240 выводят результат измерения всего за 0.016 секунды.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/Glavnaya-513x560.png',a:'Диоптриметр HLM-7000Р'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/4-1-680x468.jpg',a:'HLM-7000Р, вид 1'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/1-1-680x468.jpg',a:'HLM-7000Р, вид 2'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/2-1-680x468.jpg',a:'HLM-7000Р, вид 3'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/3-1-680x468.jpg',a:'HLM-7000Р, вид 4'}
+  ],
+  specs:[
+    {t:'Особенности', r:[
+      ['Автоматическое измерение рефракции','Да'],
+      ['Жёсткие контактные линзы','Да'],
+      ['Мягкие контактные линзы','Опция'],
+      ['Функция самоконтроля','Да'],
+      ['Встроенный принтер','Да'],
+      ['Цветной дисплей','Да, разрешение 320×240']
+    ]},
+    {t:'Диапазон измерений', r:[
+      ['Сфера (SPH)','0…±25 D'],
+      ['Цилиндр (CYL)','0…±10 D'],
+      ['Оси','0–180°'],
+      ['Дополнительная оптическая сила','0–10 D'],
+      ['Призма (270°)','0–10 Δ'],
+      ['Призма (все углы)','0–4 Δ']
+    ]},
+    {t:'Точность измерений', r:[
+      ['Шаг диоптрий','0.01 / 0.125 / 0.25 D'],
+      ['Шаг оптической силы призмы','0.01 / 0.125 / 0.25 Δ']
+    ]},
+    {t:'Прочее', r:[
+      ['Режим цилиндра','−, +, ±'],
+      ['Режим призмы','Прямоугольная / полярная'],
+      ['Быстрота измерений','0.016 сек'],
+      ['Длина волны LED','630 нм'],
+      ['Измеряемый диаметр линзы','15–100 мм'],
+      ['Значение ABBE','30–60'],
+      ['Измерение УФ пропускания','546.07 нм / 587.56 нм'],
+      ['Габариты','237×377×190 мм'],
+      ['Вес','5.5 кг']
+    ]}
+  ],
+},
+{
+  id:'hbm-1', cat:'diagnostics', model:'HBM-1', title:'Биометр HBM-1',
+  tag:'Оптический биометр с топографией роговицы и расчётом ИОЛ',
+  desc:[
+    'HBM-1 совмещает оптическую биометрию и топографию роговицы на платформе Windows 10, поддерживая формулы Holladay 1, Haigis, Hoffer Q, SRK/T, SRK II, Camellin-Calossi и Shammas No history для расчёта ИОЛ, торической ИОЛ и коррекции после LASIK.',
+    'За одно измерение прибор выдаёт 10 параметров глаза: осевую длину, глубину передней камеры, толщину роговицы и хрусталика, кератометрию, топографию, признаки кератоконуса, коэффициенты Цернике, пупиллометрию и расстояние «от белого до белого».',
+    'Режим Dense Cataract Mode усиливает слабый световой сигнал, сохраняя точность измерений даже при плотной катаракте.',
+    'История измерений позволяет отслеживать динамику осевой длины и рефракции глаза, а также сравнивать снимки до и после ортокератологии.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2026/03/hbm-1.png',a:'Биометр HBM-1'},
+    {s:'https://cdn.shopify.com/s/files/1/0482/5209/2577/files/hbm-1-1_0163831f-b66f-4527-aba5-7093d479c9eb.jpg?v=1707925894',a:'HBM-1, интерфейс'},
+    {s:'https://cdn.shopify.com/s/files/1/0482/5209/2577/files/hbm12r.jpg?v=1707926307',a:'Данные кератометрии'},
+    {s:'https://cdn.shopify.com/s/files/1/0482/5209/2577/files/hbm1dd-8.jpg?v=1706638047',a:'История измерений'}
+  ],
+  specs:[],
+},
+{
+  id:'htg-1', cat:'diagnostics', model:'HTG-1', title:'Топограф HTG-1',
+  tag:'Корнеальный топограф на основе 24 колец Пласидо с индексом KPI',
+  desc:[
+    'HTG-1 анализирует 24 кольца Пласидо, формируя осевые, тангенциальные, рефракционные и элевационные карты роговицы.',
+    'Прибор рассчитывает индекс KPI для прогнозирования вероятности кератоконуса и остаётся стабильным даже при помутнении хрусталика.',
+    'Дополнительно система оценивает диаметр зрачка при разной освещённости и получает флуоресцентное изображение для подбора контактных линз без закапывания красителя.'
+  ],
+  img:[
+    {s:'https://usophthalmic.com/cdn/shop/files/htg-4_300x300.jpg?v=1709735039',a:'Топограф HTG-1'},
+    {s:'https://cdn.shopify.com/s/files/1/0482/5209/2577/files/htg1dd-1.jpg?v=1711974357',a:'Топографическая карта'},
+    {s:'https://cdn.shopify.com/s/files/1/0482/5209/2577/files/htg1dd-2.jpg?v=1709650384',a:'HTG-1, интерфейс'},
+    {s:'https://cdn.shopify.com/s/files/1/0482/5209/2577/files/pupil2htg-1.jpg?v=1711975789',a:'Пупиллометрия'}
+  ],
+  specs:[
+    {t:'Топография роговицы', r:[
+      ['Рабочее расстояние','80–100 мм'],
+      ['Диск Пласидо','24 кольца']
+    ]},
+    {t:'Кератометрия', r:[
+      ['Диапазон измерения роговицы','до 9.8 мм (R=8.0 мм, 42.2 D, n=1.3375)'],
+      ['Радиус кривизны роговицы','3.00–38.00 мм (±0.02 мм)'],
+      ['Направление главных меридианов','0–180° (ISO 10343:2014)'],
+      ['Расстояние «белое-белое»','7–14 мм (±0.05 мм)'],
+      ['Диаметр зрачка','0.5–10 мм (±0.05 мм)']
+    ]},
+    {t:'Общие', r:[
+      ['Экран','10.1″ поворотный и наклонный сенсорный ЖК'],
+      ['Горизонтальное перемещение','45 мм (вперёд-назад), 100 мм (влево-вправо)'],
+      ['Вертикальное перемещение','30 мм'],
+      ['Упор подбородка','62 мм, с электроприводом'],
+      ['Автоотслеживание','X,Y — позиционирование; Z — рабочее расстояние'],
+      ['Питание','~100–240 В, 1.6–0.7 А, 50/60 Гц'],
+      ['Тип предохранителя','T3.15AL250V'],
+      ['ПК','Встроенный'],
+      ['Габариты','312×553×510 мм'],
+      ['Масса','19 кг']
+    ]}
+  ],
+},
+{
+  id:'slitlamp-hs', cat:'diagnostics', model:'HS-7500 / 5500 / 5000', title:'Щелевая лампа',
+  tag:'Бинокулярная оптика Галилея, увеличение от 6× до 40×',
+  desc:[
+    'Бинокулярная оптика построена по схеме Галилея, что даёт широкое поле обзора и чистое изображение.',
+    'Галогенная лампа 12 В / 30 Вт даёт достаточно света для качественных фотографий и видео, а барабан из 5 позиций меняет увеличение от 6× до 40×.',
+    'Встроенный джойстик и кнопка на его торце позволяют, не отрываясь от осмотра, сделать снимок — кадр сразу сохраняется в базе пациентов программы HIS.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/%D0%91%D0%B5%D0%B7%D1%8B%D0%BC%D1%8F%D0%BD%D0%BD%D1%8B%D0%B9-1.jpg',a:'Щелевая лампа HS-7500'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/img_hs7000_tab1-680x468.jpg',a:'Оптика Галилея'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/img_hs7000_tab2-680x468.jpg',a:'Галогенная лампа'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/img_hs7000_tab3-680x468.jpg',a:'Барабан увеличения'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/img_hs7000_tab4-680x468.jpg',a:'Джойстик управления'}
+  ],
+  specs:[
+    {t:'Щелевое освещение (7500 / 5500)', r:[
+      ['Длина щели','0.3–14 мм'],
+      ['Ширина щели','0–14 мм, плавно'],
+      ['Проекция щели','1.167×'],
+      ['Диафрагма','12.5×'],
+      ['Фильтры','Синий кобальтовый, бескрасный, теплопоглощающий, серый, жёлтый'],
+      ['Поворот щели','0–180°, плавно'],
+      ['Угол наклона щели','0°–20°, плавно'],
+      ['Рабочее расстояние','66 мм']
+    ]},
+    {t:'Щелевое освещение (5000)', r:[
+      ['Длина щели','0.3–14 мм'],
+      ['Угол наклона щели','0°, 5°, 10°, 15°, 20°'],
+      ['Рабочее расстояние','80 мм']
+    ]},
+    {t:'Микроскоп', r:[
+      ['Тип','Галилеевский конвергентный бинокулярный'],
+      ['Увеличение','Барабан, 5 позиций'],
+      ['Окуляры','12.5× или 10×'],
+      ['Полное увеличение','6/10/16/25/40× (окуляры 12.5×) или 5/8/12/20/32× (окуляры 10×)'],
+      ['Поле зрения','38.5 / 24.0 / 15.0 / 9.0 / 6.0 мм'],
+      ['Межзрачковое расстояние','55–80 мм, регулируемое']
+    ]},
+    {t:'Основание', r:[
+      ['Вертикальное перемещение','28 мм'],
+      ['Продольное перемещение','78 мм'],
+      ['Поперечное перемещение','98 мм'],
+      ['Тонкая настройка','10 мм'],
+      ['Питание','~2.0 A, 100–240 В, 50/60 Гц'],
+      ['Энергопотребление','70 ВА'],
+      ['Питание осветителя','12 В постоянное'],
+      ['Лампа','Галогенная 12В/30Вт или LED 10.0В/4.4Вт'],
+      ['Лампочка фиксации взгляда','3.4 В, 20 мА']
+    ]}
+  ],
+},
+{
+  id:'hvf-100', cat:'diagnostics', model:'HVF-100', title:'Автоматический периметр HVF-100',
+  tag:'Периметр по стандарту Гольдмана с голосовыми подсказками',
+  desc:[
+    'HVF-100 измеряет поле зрения по методике Гольдмана, оценивая зрительную чувствительность и диапазон восприятия стимула на бело-чёрном фоне.',
+    'Тестовые программы включают проверку слепой зоны, горизонтального угла обзора и специализированные протоколы для диагностики глаукомы, нарушений зрительного нерва и заболеваний сетчатки.',
+    'Система сама распознаёт правый и левый глаз, измеряет диаметр зрачка для коррекции ошибок и сопровождает обследование голосовыми подсказками.'
+  ],
+  img:[
+    {s:'https://usophthalmic.com/cdn/shop/files/HVF-100_720x.jpg?v=1694632960',a:'Периметр HVF-100, общий вид'},
+    {s:'https://usophthalmic.com/cdn/shop/files/HVF-100-20_300x300.jpg?v=1704831319',a:'HVF-100, вид сбоку'},
+    {s:'https://usophthalmic.com/cdn/shop/files/HVF-100-9_300x300.jpg?v=1704831319',a:'HVF-100, экран и подбородник'},
+    {s:'https://usophthalmic.com/cdn/shop/files/HVF-100-1_300x300.jpg?v=1704831319',a:'HVF-100, вид сзади'},
+    {s:'https://www.huvitz.com/wp-content/uploads/2024/09/eye-tracking-copy.jpg',a:'Функция слежения за глазом'}
+  ],
+  specs:[
+    {t:'Характеристики', r:[
+      ['Модель','HVF-100'],
+      ['Габариты блока стимула','480×430×528 мм'],
+      ['Масса','14 кг'],
+      ['Потребляемая мощность','200 ВА'],
+      ['Размер сферы','Радиус 300 мм'],
+      ['Цвет фона','Белый'],
+      ['Яркость фона','10 кд/м²'],
+      ['Размер стимула','III'],
+      ['Рабочее расстояние','300 ±10 мм'],
+      ['Особенности устройства','Стационарный периметр со светодиодным стимулом'],
+      ['Тип периметра','Стационарный']
+    ]}
+  ],
+},
+{
+  id:'hnt-1', cat:'diagnostics', model:'HNT-1 / HNT-1P', title:'Бесконтактный тонометр HNT-1 и HNT-1Р',
+  tag:'Технология Smart Puffing Control для комфортного измерения ВГД',
+  desc:[
+    'Технология Smart Puffing Control Essence сама подбирает силу воздушного импульса на основании первого измерения, снижая дискомфорт пациента.',
+    'Анимированные подсказки на экране помогают врачу скорректировать джойстик и упор подбородка, когда прибор выходит за пределы диапазона автослежения.',
+    'Версия HNT-1P дополнена встроенным пахиметром — при вводе толщины роговицы прибор сразу показывает компенсированное значение ВГД — и функцией захвата поперечного сечения угла передней камеры (ACA) для диагностики закрытоугольной глаукомы.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/img_hnt1_1.jpg',a:'Тонометр HNT-1'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/1-1.jpg',a:'Регулировка давления наддува'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/2-1.jpg',a:'Анимированная обратная связь'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/3.jpg',a:'Встроенный пахиметр (HNT-1P)'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/4.jpg',a:'Захват сечения ACA (HNT-1P)'}
+  ],
+  specs:[],
+},
+{
+  id:'htr-1a', cat:'diagnostics', model:'HTR-1A', title:'Авторефкератотонометр с функцией пахиметрии HTR-1A',
+  tag:'3-в-1: рефкератометрия, бесконтактная тонометрия и пахиметрия',
+  desc:[
+    'HTR-1A автоматически наводится и следит за глазом пациента, но при необходимости допускает и ручную настройку.',
+    'Собственный алгоритм анализа волнового фронта по микролинзовому растру учитывает аберрации высших порядков и помогает выявлять изменения после рефракционной хирургии.',
+    'ИК-подсветка в режиме ретроиллюминации показывает разницу оптической плотности структур глаза, что помогает на раннем этапе заметить помутнение роговицы, хрусталика или стекловидного тела.',
+    'Режимы мейбографии и измерения времени разрыва слёзной плёнки подтверждают синдром сухого глаза, а пневмотонометрия сочетается со встроенным пахиметром для расчёта роговично-компенсированного давления.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2026/03/HTR-1A-3-2.png',a:'Авторефкератотонометр HTR-1A'},
+    {s:'https://huvitz.by/wp-content/uploads/2026/03/HTR-1A-2-2.png',a:'HTR-1A, экран результатов'},
+    {s:'https://huvitz.by/wp-content/uploads/2026/03/HTR-1A-6.png',a:'HTR-1A, режим измерения'},
+    {s:'https://huvitz.by/wp-content/uploads/2026/03/HTR-1A-4-2.png',a:'HTR-1A, панель управления'}
+  ],
+  specs:[
+    {t:'Рефрактометрия', r:[
+      ['Вертексное расстояние (VD)','0.0 / 12.0 / 13.75 / 15.0 мм'],
+      ['Сфера (SPH)','−30.00…+25.00 D'],
+      ['Цилиндр (CYL)','0.00±12.00 D'],
+      ['Ось (AX)','0–180°'],
+      ['Форма цилиндра','−, +, MIX'],
+      ['Межзрачковое расстояние (PD)','10–85 мм'],
+      ['Мин. диаметр зрачка','2.0 мм']
+    ]},
+    {t:'Кератометрия', r:[
+      ['Радиус кривизны','5.0–13.0 мм'],
+      ['Рефракционная сила','25.96–67.50 D'],
+      ['Роговичный астигматизм','0.0…−15.00 D'],
+      ['Диаметр роговицы/зрачка','2.0–14.0 мм']
+    ]},
+    {t:'Тонометрия и пахиметрия', r:[
+      ['Диапазон ВГД','1–60 мм рт. ст.'],
+      ['Шаг измерения ВГД','1 мм рт. ст. (усреднение 0.1)'],
+      ['Погрешность ВГД','±5.0 мм рт. ст.'],
+      ['Толщина роговицы','300–800 мкм'],
+      ['Шаг измерения толщины','1 мкм'],
+      ['Погрешность толщины','±10.0 мкм']
+    ]},
+    {t:'Перемещения и память', r:[
+      ['Общее перемещение (В-Н/Л-П/Впер-Наз)','83 / 90 / 40 мм'],
+      ['Автослежение','±5 мм по всем осям'],
+      ['Упор подбородка','65 мм (±3 мм)'],
+      ['Память','10 измерений на глаз']
+    ]},
+    {t:'Прочее', r:[
+      ['Связь','RS-232C, USB, Ethernet, Wi-Fi (802.11b, WPA2-PSK), видео'],
+      ['Принтер','Встроенный термопринтер с автообрезкой'],
+      ['Экран','7″ поворотный сенсорный IPS 800×480'],
+      ['Габариты / Масса','301×535×506 мм / 23.8 кг']
+    ]}
+  ],
+},
+{
+  id:'ht-5000', cat:'diagnostics', model:'HT-5000', title:'Аппланационный тонометр',
+  tag:'Накладной тонометр для щелевой лампы с подсвечиваемым дисплеем',
+  desc:[
+    'HT-5000 крепится на щелевые лампы серии HS и мгновенно переходит из ждущего режима в режим измерения.',
+    'Наклонный подсвечиваемый дисплей и широкие ручки настройки измерительной призмы упрощают работу даже в затемнённом кабинете.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HT-5000-517x560.jpg',a:'Аппланационный тонометр HT-5000'}
+  ],
+  specs:[
+    {t:'Характеристики', r:[
+      ['Способ крепления','На щелевую лампу'],
+      ['Диапазон измерения','3–75 мм рт. ст.'],
+      ['Стандартное отклонение','менее 1.5% измеряемой величины'],
+      ['Тип аккумулятора','Батарейки ААА'],
+      ['Вес','0.5 кг (с батарейками, без аксессуаров)']
+    ]}
+  ],
+},
+{
+  id:'hnt-7000', cat:'diagnostics', model:'HNT-7000', title:'Бесконтактный тонометр HNT-7000',
+  tag:'Автоматический тонометр с компенсацией по толщине роговицы',
+  desc:[
+    'Одной кнопкой HNT-7000 измеряет оба глаза — сам находит нужный глаз, фокусируется и выполняет «воздушный выстрел».',
+    'Первый импульс всегда «мягкий», сила автоматически увеличивается только при необходимости, что снижает дискомфорт пациента.',
+    'Учёт толщины роговицы позволяет рассчитать роговично-компенсированное внутриглазное давление.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HNT-70001-560x554.jpg',a:'Тонометр HNT-7000'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HNT-7000-Avtotreking.jpg',a:'Автотрекинг'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HNT-7000-Sensornyiy-ekran.jpg',a:'Сенсорный экран'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HNT-7000-Sistema-izmereniy.jpg',a:'Система измерения'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/HNT-7000-Kompensatsiya-tolshhinyi-rogovitsyi.jpg',a:'Компенсация толщины роговицы'}
+  ],
+  specs:[
+    {t:'Характеристики', r:[
+      ['Тип','Бесконтактный'],
+      ['Диапазон измерения','0–60 мм рт. ст.'],
+      ['Точность измерения','1 мм рт. ст.'],
+      ['Рабочее расстояние','11 мм от сопла'],
+      ['Метод измерения','Автоматический / полуавтоматический / ручной'],
+      ['Интерфейс','RS-232C'],
+      ['Дисплей','5.7″ цветной TFT, наклон 0–90°'],
+      ['Принтер','Термопринтер, 63×44×29 мм'],
+      ['Питание','~100–240 В, 50/60 Гц, 80 ВА'],
+      ['Диапазон перемещений','Вперёд-назад 40 мм, влево-вправо 90 мм, вверх-вниз 30 мм'],
+      ['Габариты','462×294×510 мм'],
+      ['Масса','20.5 кг']
+    ]}
+  ],
+},
+{
+  id:'hoct-1', cat:'diagnostics', model:'HOCT-1/1F', title:'Оптический томограф',
+  tag:'Спектральный ОКТ с фундус-камерой и опциями топографии/биометрии/ангио',
+  desc:[
+    'HOCT-1/1F объединяет оптический когерентный томограф, ретинальную фундус-камеру и ПК в одном корпусе, визуализируя слои сетчатки и диск зрительного нерва в 3D.',
+    'Опциональные модули добавляют топографию, биометрию и ангио-режим, расширяя прибор до комплексной диагностической станции.',
+    'Модуль переднего сегмента измеряет толщину и 3D-форму роговицы и угол передней камеры, а отчёты выводятся в удобном формате через систему веб-просмотра.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/Glavnaya-560x458.jpg',a:'Оптический томограф HOCT-1/1F'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/Sochetanie-vyisokoy-skorosti-i-kachstva-680x468.jpg',a:'Высокая скорость сканирования'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/Vse-v-odnoy-sisteme-680x468.jpg',a:'Всё в одной системе'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/Detalnyiy-otchet-1-680x468.png',a:'Детальный отчёт'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/Izobrazhenie-perednego-otrezka-glaza-680x468.png',a:'Передний отрезок глаза'},
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/Retinalnaya-fundus-kamera-680x468.jpg',a:'Ретинальная фундус-камера'}
+  ],
+  specs:[
+    {t:'ОКТ', r:[
+      ['Разрешение','Z: 6–7 мкм, XY: 20 мкм'],
+      ['Скорость сканирования','68 000 А-сканов/с'],
+      ['Диапазон сканирования (глазное дно)','X 6–12 мм, Y 6–9 мм, Z 2.34 мм'],
+      ['Диапазон сканирования (роговица)','X, Y 6–9 мм'],
+      ['Время 3D-скана','1.4 с (A512×B96)'],
+      ['Мин. диаметр зрачка','2.5 мм'],
+      ['Источник света','SLD 840 нм'],
+      ['Мощность на роговице','≤ 650 мкВт'],
+      ['Режимы','Macular Line/Cross/Radial/Raster/3D, Disc Circle/Radial/Raster/3D']
+    ]},
+    {t:'Фундус-камера', r:[
+      ['Тип','Цветная, 12 МП'],
+      ['Поле зрения','45°'],
+      ['Мин. диаметр зрачка','4 мм (норм.) / 3.3 мм (малый)'],
+      ['Вспышка','LED'],
+      ['Разрешение','60 лин/мм (центр), 40 (r/2), 25 (r)']
+    ]},
+    {t:'Общие характеристики', r:[
+      ['Рабочее расстояние','33 мм'],
+      ['Экран','12.1″, 1280×800'],
+      ['Горизонтальное перемещение','70 мм (вперёд-назад), 100 мм (влево-вправо)'],
+      ['Вертикальное перемещение','30 мм'],
+      ['Упор подбородка','62 мм, моторизированный'],
+      ['Автовыравнивание','X,Y — позиционирование, Z — рабочее расстояние'],
+      ['Передача файлов','DICOM (опционально)'],
+      ['Питание','~100–240 В, 1.6–0.7 А, 50/60 Гц'],
+      ['Габариты / Вес','330×542×521 мм / 30 кг']
+    ]}
+  ],
+},
+{
+  id:'et-01', cat:'workplace', model:'ET-01', title:'Столик приборный',
+  tag:'Приборный столик с электрорегулировкой высоты, производство Литва',
+  desc:[
+    'ET-01 производится компанией UAB Medinstrus в Литве и подстраивается по высоте под рост врача и пациента.',
+    'Диапазон регулировки высоты — от 670 до 920 мм, максимальная нагрузка — 90 кг.'
+  ],
+  img:[
+    {s:'https://huvitz.by/wp-content/uploads/2019/03/%D0%91%D0%B5%D0%B7%D1%8B%D0%BC%D1%8F%D0%BD%D0%BD%D1%8B%D0%B9.jpg',a:'Приборный столик ET-01'}
+  ],
+  specs:[
+    {t:'Характеристики', r:[
+      ['Производитель','UAB Medinstrus, Литва'],
+      ['Минимальная высота','670 мм'],
+      ['Максимальная высота','920 мм'],
+      ['Максимальная нагрузка','90 кг']
+    ]}
+  ],
+}
+];
+
+document.getElementById('statTotal').textContent = PRODUCTS.length;
+
+const grid = document.getElementById('grid');
+const contactsPanel = document.getElementById('contactsPanel');
+const contactsGrid = document.getElementById('contactsGrid');
+const emptyEl = document.getElementById('empty');
+const countEl = document.getElementById('count');
+const searchInput = document.getElementById('search');
+const tabs = document.querySelectorAll('.tab');
+let activeCat = 'all';
+
+function renderContacts(){
+  contactsGrid.innerHTML = CONTACTS.map(contact => `
+    <article class="contact-card">
+      <div class="contact-badge">${contact.role}</div>
+      <h3>${contact.name}</h3>
+      <div class="contact-role">${contact.position}</div>
+      <ul>
+        ${contact.phones.map(phone => `<li><span class="contact-label">Тел.</span><a href="tel:${phone.raw}">${phone.label}</a></li>`).join('')}
+        ${contact.email ? `<li><span class="contact-label">Email</span><a href="mailto:${contact.email}">${contact.email}</a></li>` : ''}
+        ${contact.address ? `<li><span class="contact-label">Адрес</span><span>${contact.address}</span></li>` : ''}
+      </ul>
+      <p>${contact.note}</p>
+    </article>
+  `).join('');
+}
+
+function renderGrid(){
+  if (activeCat === 'contacts') {
+    contactsPanel.style.display = 'block';
+    grid.style.display = 'none';
+    emptyEl.style.display = 'none';
+    countEl.textContent = CONTACTS.length + ' контакта';
+    renderContacts();
+    return;
+  }
+
+  contactsPanel.style.display = 'none';
+  grid.style.display = 'grid';
+  const q = searchInput.value.trim().toLowerCase();
+  const filtered = PRODUCTS.filter(p=>{
+    const matchesCat = activeCat==='all' || p.cat===activeCat;
+    const matchesQ = !q || (p.title+' '+p.model+' '+p.tag).toLowerCase().includes(q);
+    return matchesCat && matchesQ;
+  });
+  grid.innerHTML = '';
+  filtered.forEach((p,i)=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+  card.setAttribute('role','button');
+  card.setAttribute('tabindex','0');
+  card.setAttribute('aria-label','Открыть информацию: ' + p.title);
+    card.style.animationDelay = (i*35)+'ms';
+    card.innerHTML = `
+      <div class="card-media">
+        <img src="${p.img[0].s}" alt="${p.img[0].a}" loading="lazy">
+        <div class="card-model mono">${p.model}</div>
+        <div class="card-cat">${CAT_LABEL[p.cat]}</div>
+      </div>
+      <div class="card-body">
+        <h3>${p.title}</h3>
+        <p>${p.tag}</p>
+      </div>`;
+    card.addEventListener('click', (e)=>openModal(p, e));
+    card.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter' || e.key===' '){
+        e.preventDefault();
+        openModal(p, e);
+      }
+    });
+    grid.appendChild(card);
+  });
+  countEl.textContent = filtered.length + ' из ' + PRODUCTS.length;
+  emptyEl.style.display = filtered.length ? 'none' : 'block';
+}
+
+tabs.forEach(t=>{
+  t.addEventListener('click', ()=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    activeCat = t.dataset.cat;
+    renderGrid();
+  });
+});
+document.querySelectorAll('[data-cat-link]').forEach(a=>{
+  a.addEventListener('click',(e)=>{
+    e.preventDefault();
+    const cat = a.dataset.catLink;
+    tabs.forEach(x=>x.classList.toggle('active', x.dataset.cat===cat));
+    activeCat = cat;
+    renderGrid();
+    document.querySelector('.controls').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+searchInput.addEventListener('input', renderGrid);
+
+const overlay = document.getElementById('overlay');
+const modal = document.getElementById('modal');
+
+function openModal(p, evt){
+  const x = evt ? ((evt.clientX/window.innerWidth)*100).toFixed(1)+'%' : '50%';
+  const y = evt ? ((evt.clientY/window.innerHeight)*100).toFixed(1)+'%' : '50%';
+  modal.style.setProperty('--mx', x);
+  modal.style.setProperty('--my', y);
+
+  const specsHtml = p.specs.length
+    ? p.specs.map(g=>`
+        <div class="spec-group">
+          <h4>${g.t}</h4>
+          ${g.r.map(row=>`<div class="spec-row"><div class="k">${row[0]}</div><div class="v">${row[1]}</div></div>`).join('')}
+        </div>`).join('')
+    : `<p class="no-specs">Подробные технические параметры этой модели уточняйте у представителя — на сайте они не опубликованы в табличном виде.</p>`;
+
+  modal.innerHTML = `
+    <div class="modal-top">
+      <button class="modal-close" id="closeBtn" aria-label="Закрыть">&times;</button>
+      <img class="modal-main-img" id="mainImg" src="${p.img[0].s}" alt="${p.img[0].a}">
+    </div>
+    ${p.img.length>1 ? `<div class="thumbs" id="thumbs">${p.img.map((im,idx)=>`<img src="${im.s}" alt="${im.a}" class="${idx===0?'active':''}" data-idx="${idx}">`).join('')}</div>` : ''}
+    <div class="modal-head">
+      <div class="modal-cat">${CAT_LABEL[p.cat]}</div>
+      <div class="mcode mono">${p.model}</div>
+      <h2>${p.title}</h2>
+      <p class="mtag">${p.tag}</p>
+    </div>
+    <div class="modal-desc">${p.desc.map(d=>`<p>${d}</p>`).join('')}</div>
+    <div class="modal-specs">
+      <div class="spec-group"><h4>Технические характеристики</h4></div>
+      ${specsHtml}
+    </div>
+    <div class="modal-foot">
+      <span class="contact">Консультация и заказ: <a href="tel:+375296749345" style="border:none;">+375 29 674-93-45</a></span>
+    </div>
+  `;
+
+  const thumbs = modal.querySelectorAll('#thumbs img');
+  thumbs.forEach(t=>{
+    t.addEventListener('click', ()=>{
+      thumbs.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('mainImg').src = t.src;
+    });
+  });
+  modal.querySelector('#closeBtn').addEventListener('click', closeModal);
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(()=> requestAnimationFrame(()=> modal.classList.add('show') ));
+}
+
+function closeModal(){
+  modal.classList.remove('show');
+  document.body.style.overflow = '';
+  setTimeout(()=>{ overlay.classList.remove('open'); }, 420);
+}
+
+overlay.addEventListener('click', (e)=>{ if(e.target===overlay) closeModal(); });
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && overlay.classList.contains('open')) closeModal(); });
+
+renderGrid();
+</script>
+</body>
+</html>
